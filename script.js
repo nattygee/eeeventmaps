@@ -5,17 +5,25 @@ const mapImageCenterX = mapInner.offsetWidth / 2;
 const mapImageCenterY = mapInner.offsetHeight / 2;
 
 const zoom = panzoom(mapInner, {
-    minZoom: 0.5,
-    maxZoom: 5.0
+    minZoom: 1.0,
+    maxZoom: 5.0,
+    /* bounds: true,
+    boundsPadding: 0.1 */
 });
 
-const startingZoom = window.innerWidth > 768 ? 1.0 : 1.5;
+const startingZoom = window.innerWidth > 768 ? 1.0 : 3.0;
 zoom.zoomAbs(mapImageCenterX, mapImageCenterY, startingZoom);
 
 // Filter panel toggle
 const filterToggle = document.getElementById('filter-toggle');
 const filterPanel = document.getElementById('filter-panel');
 const filterBtns = document.querySelectorAll('.filter-btn');
+const headerLockup = document.querySelector('.headerLockup');
+
+function updateHeaderVisibility() {
+  const anyOpen = filterPanel.classList.contains('open') || legendPanel.classList.contains('open');
+  headerLockup.classList.toggle('panel-open', anyOpen);
+}
 
 function updateFilterCount() {
   const activeCount = document.querySelectorAll('.filter-btn.active').length;
@@ -33,6 +41,12 @@ updateFilterCount();
 
 filterToggle.addEventListener('click', () => {
   filterPanel.classList.toggle('open');
+  updateHeaderVisibility();
+});
+
+document.getElementById('filter-close').addEventListener('click', () => {
+  filterPanel.classList.remove('open');
+  updateHeaderVisibility();
 });
 
 filterBtns.forEach(btn => {
@@ -50,6 +64,21 @@ filterBtns.forEach(btn => {
 
     updateFilterCount();
   });
+});
+
+// Legend panel
+const legendToggle = document.getElementById('legend-toggle');
+const legendPanel = document.getElementById('legend-panel');
+const legendClose = document.getElementById('legend-close');
+
+legendToggle.addEventListener('click', () => {
+  legendPanel.classList.toggle('open');
+  updateHeaderVisibility();
+});
+
+legendClose.addEventListener('click', () => {
+  legendPanel.classList.remove('open');
+  updateHeaderVisibility();
 });
 
 // Clear button

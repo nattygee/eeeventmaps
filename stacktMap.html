@@ -5,31 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CDN (content delivery network) for panzoom.js -->
   <script src="https://unpkg.com/panzoom@9.4.3/dist/panzoom.min.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+  <!--  -->
   <title>Stackt Market Map</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="pageTitle"><h1>Stackt Market Map</h1></div>
-
-  <div id="map-container">
-    <div id="map-inner">
-        <img src="Images/stackt-base-map.png" alt="Stackt Base Map" />
-        <img src="Images/speakers.svg" class="overlay" id="speakers-layer" alt="Speakers" />
-        <img src="Images/food.svg" class="overlay" id="food-layer" alt="Food" />
-        <img src="Images/drinks.svg" class="overlay" id="drinks-layer" alt="Drinks" />
-      </div>
-  </div>
+    <div class="headerLockup" style="display: flex; flex-direction: row; width: 100vw; justify-content: space-between; align-items: center; position: fixed; top: 0; z-index: 100; padding: 1rem;">
+        <!-- <img src="Images/header-fade-left.svg" alt="Header Fade Left" style="max-width: 400px; position: absolute; left: 0; top: 0;"> -->
+        <img src="Images/header-fade-right.svg" alt="Header Fade Right" style="max-width: 400px; position: absolute; right: 0; top: 0;">
+        <div class="logoTitleLockup" style="display: flex; flex-direction: column; flex: start; align-items: flex-end; padding: 0.5rem; border-radius: 0.5rem; z-index: 100; background-color: rgba(0, 0, 0, 0.1); backdrop-filter: blur(8px);">
+            <div class="titlePresentedByCombo" style="display: flex; flex-direction: row; gap: 0.5rem; align-items: center;">
+                <img src="Images/logo-title-AdClub.svg" alt="AdClub Logo" style="max-width: 100px;"/>
+                <img src="Images/vertical-title-divider.svg" alt="" style="height: 40px;">
+                <div class="orbitron-pageTitle">digital day 2026</div>
+            </div>
+            <div class="titlePresentedByCombo" style="display: flex; flex-direction: row;">
+                <div class="pageSubtitle" style="font-size: 0.5rem; color: white;">Presented by</div> 
+                <img src="Images/logo-title-Avvivi.png" alt="Avvivi Logo" style="max-width: 100px;" />
+            </div>
+        </div>
+        <div class="cornerLogo" style="z-index: 100; background-color: rgba(0, 0, 0, 0.1); backdrop-filter: blur(8px);padding: 0.5rem; border-radius: 0.5rem; ">
+            <img src="Images/logo-stacktMay15.svg" alt="Stackt May 15 Logo" style="max-width: 64px;">
+        </div>
+    </div>
+    <div id="map-container">
+        <div id="map-inner">
+            <img src="Images/stackt-base-map.png" alt="Stackt Base Map" />
+            <img src="Images/food.svg" class="overlay" id="food-layer" alt="Food" />
+            <img src="Images/drinks.svg" class="overlay" id="drinks-layer" alt="Drinks" />
+            <img src="Images/speakers.svg" class="overlay" id="speakers-layer" alt="Speakers" />
+            <img src="Images/activations.png" class="overlay" id="activations-layer" alt="Activations" />
+        </div>
+    </div>
 
   <button id="filter-toggle">Filters</button>
 
   <div id="filter-panel">
-    <button class="filter-btn" data-layer="speakers-layer">Speakers</button>
-    <button class="filter-btn" data-layer="food-layer">Food</button>
-    <button class="filter-btn" data-layer="drinks-layer">Drinks</button>
-    <button id="clear-btn">Clear</button>
+    <button id="filter-close">✕</button>
+    <div id="filter-content">
+      <img src="Images/filters-filterTitle.svg" alt="Filters Title" style="max-width: 300px;">
+        <button class="filter-btn" data-layer="speakers-layer">Speakers</button>
+      <button class="filter-btn" data-layer="food-layer">Food</button>
+      <button class="filter-btn" data-layer="drinks-layer">Drinks</button>
+      <button class="filter-btn" data-layer="activations-layer">Activations</button>
+      <button id="clear-btn">Clear</button>
+    </div>
   </div>
 
-  <a href="index.html"><button class="mainCTA">Back to Home</button></a>
+  <button id="legend-toggle">Legend</button>
+
+  <div id="legend-panel">
+    <button id="legend-close">✕</button>
+    <div id="legend-content">
+      <!-- legend images go here -->
+      <img src="Images/legend-legendTitle.svg" alt="Legend Key Title" style="max-width: 300px;"> 
+      <img src="Images/legend-keyTitle.svg" alt="Legend Key Title" style="max-width: 300px;"> 
+      <img src="Images/legend-key1.svg" alt="Legend Key 1" style="max-width: 300px;">
+       <img src="Images/legend-key2.svg" alt="Legend Key 2" style="max-width: 300px;">
+       <img src="Images/legend-key3.svg" alt="Legend Key 3" style="max-width: 300px;">
+       <img src="Images/legend-entrance.svg" alt="Legend Key 4" style="max-width: 300px;">
+       <!-- <img src="Images/legend-mediaTruckTitle.svg" alt="Legend Key Title" style="max-width: 300px;"> 
+       <img src="Images/legend-mediaTruck.svg" alt="Legend Key Title" style="max-width: 300px;">  -->
+       <img src="Images/legend-contentSpacesTitle.svg" alt="Legend Key Title" style="max-width: 300px;"> 
+       <img src="Images/legend-speakers.svg" alt="Legend Key 5" style="max-width: 300px;">
+       <img src="Images/legend-activationsTitle.svg" alt="Legend Key Title" style="max-width: 300px;"> 
+       <img src="Images/legend-activations1.svg" alt="Legend Key 6" style="max-width: 300px;">
+       <img src="Images/legend-activations2.svg" alt="Legend Key 7" style="max-width: 300px;">
+       <img src="Images/legend-activations3.svg" alt="Legend Key 8" style="max-width: 300px;">
+       <img src="Images/legend-activations4.svg" alt="Legend Key 9" style="max-width: 300px;">
+       <img src="Images/legend-activations5.svg" alt="Legend Key 10" style="max-width: 300px;">
+       <img src="Images/legend-activations6.svg" alt="Legend Key 11" style="max-width: 300px;">
+    </div>
+  </div>
+
+  <!-- <a href="index.html"><button class="mainCTA">Back to Home</button></a> -->
 
   <script src="script.js"></script>
 </body>
