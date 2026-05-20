@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CDN (content delivery network) for panzoom.js -->
+  <script src="https://unpkg.com/panzoom@9.4.3/dist/panzoom.min.js"></script>
+  <title>Stackt Market Map</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="pageTitle"><h1>Stackt Market Map</h1></div>
+
+  <div id="map-container">
+    <div id="map-inner">
+        <img src="Images/stackt-base-map.png" alt="Stackt Base Map" />
+        <img src="Images/speakers.svg" class="overlay" id="speakers-layer" alt="Speakers" />
+        <img src="Images/food.svg" class="overlay" id="food-layer" alt="Food" />
+        <img src="Images/drinks.svg" class="overlay" id="drinks-layer" alt="Drinks" />
+      </div>
+  </div>
+
+  <button id="filter-toggle">Filters</button>
+
+  <div id="filter-panel">
+    <button class="filter-btn" data-layer="speakers-layer">Speakers</button>
+    <button class="filter-btn" data-layer="food-layer">Food</button>
+    <button class="filter-btn" data-layer="drinks-layer">Drinks</button>
+    <button id="clear-btn">Clear</button>
+  </div>
+
+  <a href="index.html"><button class="mainCTA">Back to Home</button></a>
+
+  <script src="script.js"></script>
+</body>
+</html>
